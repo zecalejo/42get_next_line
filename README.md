@@ -18,4 +18,4 @@ The main goal is for the student to learn the concept of static variables.
 This is the [subject](https://github.com/zecalejo/42get_next_line/blob/master/en.subject.pdf) of the project.
 </p>
 
-Use these links to check the ["utils" file](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line_utils.c) and [header file](https://github.com/zecalejo/42get_next_linef/blob/master/get_next_line.h).
+Use these links to check the ["utils" file](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line_utils.c) and [header file](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line.h).
