@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:14:50 by jnuncio-          #+#    #+#             */
-/*   Updated: 2022/12/04 16:17:28 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2022/12/12 23:43:20 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 char	*get_next_line(int fd);
 
