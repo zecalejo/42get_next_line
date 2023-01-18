@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:14:50 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/01/03 21:07:37 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:07:16 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,12 @@ char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
+int		ft_findchr(char *str, char c);
+int		ft_clnbuf(char *buf);
+
 size_t	ft_strlen(const char *str);
 
 void	*ft_memmove(void *dest, const void *src, size_t n);
+void	*ft_memset(void *s, int c, size_t n);
 
 #endif

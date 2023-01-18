@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:13:42 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/01/08 15:56:41 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:07:45 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,44 @@ char	*ft_get_line(char *stash)
 	if (stash[i] == '\n')
 		line[i] = stash[i];
 	line[++i] = '\0';
-	stash = ft_substr(stash, i, ft_strlen(stash) - i);
 	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*buf;
-	static char	*stash;
+	static char	*buf[BUFFER_SIZE + 1];
 	char		*line;
-	int			r;
+	int			i;
 
-	buf = (char *)malloc(BUFFER_SIZE + 1);
-	if (!buf)
-		return (NULL);
-	r = read(fd, buf, BUFFER_SIZE);
-	if (r == -1)
-		return (NULL);
-	else if (r != 0)
+	i = -1;
+	line = NULL;
+	if (BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 	{
-		stash = ft_strjoin(stash, buf);
-		get_next_line(fd);
+		ft_memset(buf, 0, ft_strlen(buf));
+		return (NULL);
 	}
-	line = ft_get_line(stash);
+	while (buf[0] || read(fd, buf, BUFFER_SIZE) > 0)
+	{
+		line = ft_strjoin(line, buf);
+		if (ft_clnbuf(buf))
+			break ;
+	}
 	return (line);
 }
 
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
+int	main(void)
+{
+	int		fd;
+	char	*line;
 
-// 	fd = open("test.txt", O_RDONLY);
-// 	printf("fd = %d/n", fd);
-// 	line = get_next_line(fd);
-// 	printf("%s\n", line);
-// 	while (line)
-// 		printf("%s\n", line);
-// 	// printf("\n");
-// 	// while (get_next_line(0))
-// 	// 	printf("%s\n", get_next_line(0));
-// 	return (0);
-// }
+	fd = open("test.txt", O_RDONLY);
+	printf("fd = %d/n", fd);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	while (line)
+		printf("%s\n", line);
+	// printf("\n");
+	// while (get_next_line(0))
+	// 	printf("%s\n", get_next_line(0));
+	return (0);
+}

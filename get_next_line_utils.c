@@ -6,7 +6,7 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:18:11 by jnuncio-          #+#    #+#             */
-/*   Updated: 2022/12/19 21:51:50 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:31:57 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ size_t	ft_strlen(const char *str)
 	while (str[len])
 		len++;
 	return (len);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		((char *)s)[i] = c;
+		i++;
+	}
+	return (s);
 }
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
@@ -62,37 +75,37 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!s3)
 		return (NULL);
 	ft_memmove(s3, s1, len1);
+	free(s1);
 	i = 0;
-	while (i < len2)
+	while (*s2)
 	{
-		s3[len1 + i] = s2[i];
+		s3[len1 + i++] = *s2;
 		i++;
+		if (*s2++ == '\n')
+			break ;
 	}
 	s3[len1 + i] = '\0';
 	return (s3);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_clnbuf(char *buf)
 {
-	char	*subs;
-	size_t	i;
+	int	i;
+	int	j;
+	int	newln;
 
-	i = start;
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		len = 0;
-	while ((i - start) < len && i < ft_strlen(s))
-		i++;
-	subs = (char *)malloc(sizeof(char) * ((i - start) + 1));
-	if (!subs)
-		return (NULL);
-	i = 0;
-	while (i < len && s[start + i])
+	i = -1;
+	j = 0;
+	newln = 0;
+	if (!buf)
+		return (0);
+	while (buf[++i])
 	{
-		subs[i] = s[start + i];
-		i++;
+		if (newln)
+			buf[j++] = buf[i];
+		if (buf[i] == '\n')
+			newln = 1;
+		buf[i] = '\0';
 	}
-	subs[i] = '\0';
-	return (subs);
+	return (newln);
 }
