@@ -1,52 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:13:42 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/01/25 18:11:28 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:43:50 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	buf[BUFFER_SIZE + 1];
+	static char	buf[FOPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 	int			i;
 
 	i = 0;
+	if (fd < 0 || fd > FOPEN_MAX)
+		return (NULL);
 	if (BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 	{
-		while (buf[i])
-			buf[i++] = 0;
+		while (buf[fd][i] && fd >= 0 && fd <= FOPEN_MAX)
+			buf[fd][i++] = 0;
 		return (NULL);
 	}
 	line = NULL;
-	while (buf[0] || read(fd, buf, BUFFER_SIZE) > 0)
+	while (buf[fd][0] || read(fd, buf[fd], BUFFER_SIZE) > 0)
 	{
-		line = ft_strjoin(line, buf);
-		if (ft_clnbuf(buf))
+		line = ft_strjoin(line, buf[fd]);
+		if (ft_clnbuf(buf[fd]))
 			break ;
 	}
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-
-// 	fd = open("test.txt", O_RDONLY);
-// 	printf("fd = %d\n\n", fd);
-// 	line = get_next_line(fd);
-// 	while (line)
-// 	{
-// 		printf("%s", line);
-// 		line = get_next_line(fd);
-// 	}
-// 	return (0);
-// }
