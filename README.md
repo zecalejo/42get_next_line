@@ -24,6 +24,7 @@ Use these links to check the:
 &#x2022; [main function](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line.c)</p>
 &#x2022; [support functions](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line_utils.c)</p>
 &#x2022; [header file](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line.h).
+</p>
 
 ### Bonus part
 
