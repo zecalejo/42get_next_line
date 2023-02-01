@@ -6,11 +6,11 @@
 /*   By: jnuncio- <jnuncio-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/04 16:13:42 by jnuncio-          #+#    #+#             */
-/*   Updated: 2023/01/25 21:15:27 by jnuncio-         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:45:11 by jnuncio-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
