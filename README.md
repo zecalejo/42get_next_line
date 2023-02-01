@@ -29,4 +29,3 @@ Use these links to check the:
 ### Bonus part
 
 &#x2022; [main function](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line_bonus.c)
-&#x2022; [header file](https://github.com/zecalejo/42get_next_line/blob/master/get_next_line_bonus.h).
